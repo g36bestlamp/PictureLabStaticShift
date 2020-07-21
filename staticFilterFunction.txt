@@ -1,0 +1,30 @@
+public void staticFilter(double grainMagnitude){
+      CustomPicture staticPic = new CustomPicture("StaticPic.jpg");
+      Pixel[][] pixels = this.getPixels2D();
+      Pixel[][] pixelsS = staticPic.getPixels2D();
+      grainMagnitude = grainMagnitude%1;
+      for(int x = 0; x < pixels[0].length; x++){
+          for(int y = 0; y < pixels.length; y++){
+          pixels[y][x].setRed((int)(pixels[y][x].getRed()*(1-grainMagnitude))+(int)(pixelsS[y%719][x%1279].getRed()*grainMagnitude));
+          pixels[y][x].setBlue((int)(pixels[y][x].getBlue()*(1-grainMagnitude))+(int)(pixelsS[y%719][x%1279].getBlue()*grainMagnitude));
+          pixels[y][x].setGreen((int)(pixels[y][x].getGreen()*(1-grainMagnitude))+(int)(pixelsS[y%719][x%1279].getGreen()*grainMagnitude));
+          }
+      }
+      Pixel[][] pixelsa = this.getPixels2D();
+      for(int x = 0; x < pixels[0].length; x++){
+          for(int y = (int)pixels.length/4; y < (int)(pixels.length/4+pixels.length/20); y++){
+              pixels[y][x].setColor(pixelsa[y][(x+80)%(pixels[0].length-1)].getColor());
+              pixels[y][x].setRed((int)(pixels[y][x].getRed()*(1-grainMagnitude))+(int)(pixelsS[y][(x+80)%(pixels[0].length-1)].getRed()*grainMagnitude));
+              pixels[y][x].setBlue((int)(pixels[y][x].getBlue()*(1-grainMagnitude))+(int)(pixelsS[y][(x+80)%(pixels[0].length-1)].getBlue()*grainMagnitude));
+              pixels[y][x].setGreen((int)(pixels[y][x].getGreen()*(1-grainMagnitude))+(int)(pixelsS[y][(x+80)%(pixels[0].length-1)].getGreen()*grainMagnitude));
+          }
+      }
+      for(int x = 0; x < pixels[0].length; x++){
+          for(int y = (int)(pixels.length*0.35); y < (int)(pixels.length*0.35+pixels.length/20); y++){
+              pixels[y][x].setColor(pixels[y][(x+80)%(pixels[0].length-1)].getColor());
+              pixels[y][x].setRed((int)(pixels[y][x].getRed()*(1-grainMagnitude))+(int)(pixelsS[y][(x+80)%(pixels[0].length-1)].getRed()*grainMagnitude));
+              pixels[y][x].setBlue((int)(pixels[y][x].getBlue()*(1-grainMagnitude))+(int)(pixelsS[y][(x+80)%(pixels[0].length-1)].getBlue()*grainMagnitude));
+              pixels[y][x].setGreen((int)(pixels[y][x].getGreen()*(1-grainMagnitude))+(int)(pixelsS[y][(x+80)%(pixels[0].length-1)].getGreen()*grainMagnitude));
+          }
+      }
+  }
